@@ -1,0 +1,125 @@
+/* Container */
+.users-container {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f4fdf6;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 100, 0, 0.1);
+  max-width: 1200px;
+  margin: 2rem auto;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Heading */
+.users-heading {
+  font-size: 2rem;
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* Loading/Error Text */
+.loading-text,
+.error-text {
+  font-size: 1.1rem;
+  margin: 1rem 0;
+}
+
+.error-text {
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+/* Table */
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.table-header {
+  background-color: #4caf50;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.table-header th {
+  padding: 1rem;
+}
+
+.table-row {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.table-row:hover {
+  background-color: #f1f8e9;
+}
+
+.table-row td {
+  padding: 1rem;
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+/* Status Styling */
+.verified {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.not-verified {
+  color: #c62828;
+  font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.verify-btn {
+  background-color: #4caf50;
+  color: #fff;
+  margin-right: 0.5rem;
+}
+
+.verify-btn:hover {
+  background-color: #388e3c;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .users-table,
+  .table-header,
+  .table-row,
+  .table-row td,
+  .table-header th {
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}

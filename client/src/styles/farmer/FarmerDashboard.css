@@ -1,0 +1,262 @@
+.farmer-dashboard-wrapper {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9fcf8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.farmer-dashboard-header {
+  background: #2e7d32;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 4px solid #1b5e20;
+}
+
+.farmer-dashboard-header h1 {
+  margin: 0;
+  font-size: 2.4rem;
+}
+
+.farmer-dashboard-header p {
+  margin-top: 0.5rem;
+  font-size: 1.15rem;
+  opacity: 0.95;
+}
+
+.farmer-dashboard-content {
+  display: flex;
+  flex: 1;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.dashboard-sidebar {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 260px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-sidebar h3 {
+  margin-bottom: 1rem;
+  color: #2e7d32;
+}
+
+.dashboard-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-sidebar li {
+  margin-bottom: 1rem;
+}
+
+.dashboard-sidebar a {
+  text-decoration: none;
+  color: #2e2e2e;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.dashboard-sidebar a:hover {
+  color: #1b5e20;
+}
+
+.dashboard-main-info {
+  flex: 1;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.dashboard-main-info h2 {
+  margin-top: 0;
+  color: #388e3c;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-main-info ul {
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+}
+
+.dashboard-main-info li {
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.dashboard-welcome-note {
+  background-color: #f1f8e9;
+  border-left: 6px solid #81c784;
+  padding: 1.2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.dashboard-welcome-note h3 {
+  margin: 0 0 0.5rem;
+  color: #33691e;
+}
+
+.dashboard-welcome-note p {
+  margin: 0;
+  color: #444;
+}
+
+@media (max-width: 768px) {
+  .farmer-dashboard-content {
+    flex-direction: column;
+  }
+
+  .dashboard-sidebar {
+    width: 100%;
+  }
+}
+
+.dashboard-welcome-banner {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  margin: 1.5rem 2rem;
+  gap: 2rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.avatar-box img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #43a047;
+}
+
+.banner-text {
+  flex: 1;
+}
+
+.banner-text h2 {
+  margin: 0;
+  color: #2e7d32;
+}
+
+.banner-text p {
+  margin-top: 0.5rem;
+  color: #444;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.weather-info {
+  text-align: right;
+  min-width: 140px;
+}
+
+.weather-info h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #33691e;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #4caf50;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.verification-status {
+  margin-top: 10px;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.verified {
+  color: #2e7d32;
+  background-color: #e8f5e9;
+}
+
+.not-verified {
+  color: #c62828;
+  background-color: #ffebee;
+}
+
+.section-heading {
+  margin-top: 2rem;
+  font-size: 1.35rem;
+  color: #2e7d32;
+}
+
+.tip-cards {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.tip-card {
+  background-color: #dcedc8;
+  padding: 15px;
+  border-radius: 8px;
+  flex: 1 1 250px;
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.tip-card:hover {
+  background-color: #c5e1a5;
+}
+
+.dashboard-bottom-message {
+  background-color: #f9fbe7;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  max-width: 1100px;
+  border-radius: 12px;
+  border-left: 6px solid #aed581;
+  color: #33691e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  text-align: center;
+}
+
+.dashboard-bottom-message h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+.dashboard-bottom-message p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.dashboard-bottom-message a {
+  color: #2e7d32;
+  text-decoration: underline;
+}
+
+/* Footer (optional enhancement) */
+footer {
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  margin-top: auto;
+}

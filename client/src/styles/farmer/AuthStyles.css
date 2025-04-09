@@ -1,0 +1,139 @@
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e6f4ea, #c2e59c);
+    font-family: 'Poppins', sans-serif;
+}
+
+.auth-glass-card {
+    width: 90%;
+    max-width: 1000px;
+    height: 90vh;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    display: flex;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.auth-left, .auth-right {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.auth-left {
+    background: rgba(255, 255, 255, 0.08);
+    color: #3d4f2f;
+    text-align: center;
+    align-items: center;
+}
+
+.auth-left h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #3d4f2f;
+}
+
+.auth-left p {
+    max-width: 80%;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #4b5e3d;
+}
+
+.auth-lottie {
+    width: 200px;
+    height: 200px;
+}
+
+.auth-right h2 {
+    color: #3b4a2f;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border: 2px solid #8dbd56;
+}
+
+.submit-btn, .toggle-btn {
+    background-color: #8dbd56;
+    color: white;
+    padding: 0.8rem;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover, .toggle-btn:hover {
+    background-color: #76a844;
+}
+
+.toggle-btn {
+    width: auto;
+    margin-top: 2rem;
+    padding: 0.6rem 1.5rem;
+    background-color: #a6c96d;
+}
+
+.auth-alert {
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.auth-alert.error {
+    background: #fff3f3;
+    color: #a12424;
+}
+
+.auth-alert.success {
+    background: #e7f9ee;
+    color: #2c703d;
+}
+
+.otp-toggle {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.otp-toggle button {
+    background: none;
+    border: none;
+    color: #3d4f2f;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
