@@ -73,7 +73,6 @@ const documentController = {
           return res.status(404).json({ message: "User not found" });
         }
   
-        // Send Email Notification about Pending Verification
         await sendEmail(
           user.email,
           "Farm IT - Document Verification in Progress",

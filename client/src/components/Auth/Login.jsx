@@ -8,10 +8,16 @@ import "../../styles/farmer/AuthStyles.css";
 const AuthPage = () => {
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
+
     const [isRegistering, setIsRegistering] = useState(false);
     const [formData, setFormData] = useState({
-        firstName: "", lastName: "", email: "", password: "", role: ""
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        role: ""
     });
+
     const [profilePic, setProfilePic] = useState(null);
     const [otp, setOtp] = useState("");
     const [useOtp, setUseOtp] = useState(false);
@@ -19,42 +25,77 @@ const AuthPage = () => {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
-    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-    const handleFileChange = (e) => setProfilePic(e.target.files[0]);
-    const handleOtpChange = (e) => setOtp(e.target.value);
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleFileChange = (e) => {
+        setProfilePic(e.target.files[0]);
+    };
+
+    const handleOtpChange = (e) => {
+        setOtp(e.target.value);
+    };
 
     const toggleMode = () => {
         setIsRegistering(!isRegistering);
-        setError(""); setSuccess(""); setUseOtp(false);
+        setError("");
+        setSuccess("");
+        setUseOtp(false);
+        setOtpRequested(false);
+        setOtp("");
+        setFormData({ firstName: "", lastName: "", email: "", password: "", role: "" });
+        setProfilePic(null);
+    };
+
+    const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    const validatePassword = (password) => {
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(password);
     };
 
     const requestOtp = async () => {
+        if (!validateEmail(formData.email)) {
+            return setError("❌ Enter a valid email to request OTP.");
+        }
         try {
             await api.post("/auth/send-otp", { email: formData.email });
             setSuccess("📩 OTP sent to your email.");
             setOtpRequested(true);
-        } catch {
+        } catch (err) {
             setError("❌ Failed to send OTP.");
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(""); setSuccess("");
+        setError("");
+        setSuccess("");
+
+        if (!validateEmail(formData.email)) {
+            return setError("❌ Invalid email format.");
+        }
+
+        // Password format validation only for registration
+        if (isRegistering && !validatePassword(formData.password)) {
+            return setError("❌ Password must be at least 8 characters with uppercase, lowercase, number & symbol.");
+        }
 
         if (isRegistering) {
             const formDataWithFile = new FormData();
             Object.entries(formData).forEach(([key, value]) => formDataWithFile.append(key, value));
-            if (profilePic) formDataWithFile.append("profilePic", profilePic);
+            if (profilePic) {
+                formDataWithFile.append("profilePic", profilePic);
+            }
 
             try {
                 await api.post("/auth/register", formDataWithFile, {
-                    headers: { "Content-Type": "multipart/form-data" }
+                    headers: { "Content-Type": "multipart/form-data" },
                 });
                 setSuccess("🎉 Registration successful!");
                 setTimeout(() => {
                     setIsRegistering(false);
-                    setFormData({ firstName: "", lastName: "", email: "", password: "", role: "" });
+                    toggleMode();
                 }, 1500);
             } catch (err) {
                 setError(err.response?.data?.message || "❌ Registration failed.");
@@ -64,13 +105,26 @@ const AuthPage = () => {
             try {
                 const payload = useOtp ? { email: formData.email, otp } : formData;
                 const endpoint = useOtp ? "/auth/verify-otp" : "/auth/login";
+
                 const res = await api.post(endpoint, payload);
                 const { token, user } = res.data;
                 login(user, token);
                 setSuccess("✅ Login successful!");
-                setTimeout(() => navigate("/dashboard"), 1500);
-            } catch {
-                setError("❌ Login failed.");
+                setTimeout(() => navigate("/dashboard"), 1000);
+            } catch (err) {
+                const backendMessage = err.response?.data?.message || "❌ Login failed.";
+
+                if (backendMessage.toLowerCase().includes("password")) {
+                    setError("❌ Incorrect password. Please try again.");
+                } else if (backendMessage.toLowerCase().includes("user") || backendMessage.toLowerCase().includes("not found")) {
+                    setError("❌ User not found. Please check your email.");
+                } else if (backendMessage.toLowerCase().includes("otp")) {
+                    setError("❌ Invalid or expired OTP.");
+                } else if (backendMessage.toLowerCase().includes("validation")) {
+                    setError("❌ Invalid login credentials.");
+                } else {
+                    setError(`❌ ${backendMessage}`);
+                }
             }
         }
     };
@@ -79,12 +133,12 @@ const AuthPage = () => {
         <div className="auth-wrapper">
             <div className="auth-glass-card">
                 <div className="auth-left">
-                <Player
-  autoplay
-  loop
-  src="https://assets5.lottiefiles.com/packages/lf20_jcikwtux.json"
-  className="auth-lottie"
-/>
+                    <Player
+                        autoplay
+                        loop
+                        src="https://assets5.lottiefiles.com/packages/lf20_jcikwtux.json"
+                        className="auth-lottie"
+                    />
                     <h2>{isRegistering ? "Join Farm IT 🌱" : "Welcome Back 🌾"}</h2>
                     <p>{isRegistering ? "Create your account and grow with us!" : "Login to manage your farm or invest in agriculture."}</p>
                     <button onClick={toggleMode} className="toggle-btn">
@@ -105,7 +159,7 @@ const AuthPage = () => {
                             </>
                         )}
 
-                        <input type="email" name="email" placeholder="📧 Email" required onChange={handleChange} />
+                        <input type="email" name="email" placeholder="📧 Email" required onChange={handleChange} value={formData.email} />
 
                         {!useOtp && (
                             <input type="password" name="password" placeholder="🔒 Password" required onChange={handleChange} />

@@ -1,59 +1,103 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 import Footer from "../Common/Footer";
 import "../../styles/admin/AdminDashboard.css";
 
 const AdminDashboard = () => {
-  const adminItems = [
-    { path: "/admin/users", title: "Manage Users", icon: "👥", description: "View and manage all users." },
-    { path: "/admin/documents", title: "All Documents", icon: "📄", description: "View all user documents." },
-    { path: "/admin/verify-investments", title: "Verify Investments", icon: "✅", description: "Approve pending investments." },
-    { path: "/admin/loans", title: "All Loans", icon: "💳", description: "Review all loan requests." },
-    { path: "/admin/farms", title: "All Farms", icon: "🌾", description: "View all registered farms." },
-    { path: "/admin/transactions", title: "All Transactions", icon: "💸", description: "View all financial transactions." },
-    { path: "/admin/issues", title: "Reported Issues", icon: "⚠️", description: "Monitor and resolve reported issues." },
-  ];
+  const { user } = useContext(AuthContext);
 
-  const adminInsights = [
-    { title: "🚀 Streamlined Management", description: "Easily manage users, farms, and loans from one place." },
-    { title: "🛠 Efficient Issue Handling", description: "Quickly respond to reported problems to maintain platform integrity." },
-    { title: "📊 Data-Driven Decisions", description: "Access insights and reports to improve the platform." },
+  const dashboardItems = [
+    { path: "/admin/users", icon: "👥", title: "Manage Users" },
+    { path: "/admin/documents", icon: "📄", title: "All Documents" },
+    { path: "/admin/verify-investments", icon: "✅", title: "Verify Investments" },
+    { path: "/admin/loans", icon: "💳", title: "All Loans" },
+    { path: "/admin/farms", icon: "🌾", title: "All Farms" },
+    { path: "/admin/transactions", icon: "💸", title: "All Transactions" },
+    { path: "/admin/issues", icon: "🛠️", title: "Resolve Issues" },
   ];
 
   return (
-    <div className="admin-page-container">
-      <div className="admin-banner">
-        <h2>📌 Admin Control Panel</h2>
-        <p>Manage users, loans, and farms efficiently from one central hub.</p>
-      </div>
+    <div className="admin-dashboard-wrapper">
+      <header className="admin-dashboard-header">
+        <h1>🛡️ Admin Control Panel</h1>
+        <p>Effortlessly manage the entire platform from a single place.</p>
+      </header>
 
-      <div className="admin-container">
-        <h1 className="admin-header">Welcome, Admin! ⚡</h1>
-        <p className="admin-subheader">Take control and manage the platform effectively.</p>
+      <section className="dashboard-welcome-banner">
+        <div className="avatar-box">
+          <img
+            src={
+              user?.profilePic
+                ? `http://localhost:5000/${user.profilePic.replace(/\\/g, "/")}`
+                : "/default-profile.png"
+            }
+            alt="Admin Avatar"
+            className="profile-avatar"
+          />
+        </div>
+        <div className="banner-text">
+          <h2>Welcome, {user?.firstName || "Admin"}!</h2>
+          <p>“Leadership is not about being in charge. It is about taking care of those in your charge.”</p>
+          <p className="admin-role-status">🛡️ Role: Platform Administrator</p>
+        </div>
+      </section>
 
-        <div className="admin-insights">
-          <h3>💡 Key Insights</h3>
+      <section className="admin-dashboard-content">
+        <aside className="dashboard-sidebar">
+          <h3>Admin Tools</h3>
           <ul>
-            {adminInsights.map((insight, index) => (
+            {dashboardItems.map((item, index) => (
               <li key={index}>
-                <strong>{insight.title}</strong> - {insight.description}
+                <Link to={item.path}>
+                  <span>{item.icon}</span> {item.title}
+                </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </aside>
 
-        <div className="admin-card-grid">
-          {adminItems.map((item, index) => (
-            <Link to={item.path} key={index} className="admin-card">
-              <div className="admin-card-content">
-                <span className="admin-icon">{item.icon}</span>
-                <h3 className="admin-card-title">{item.title}</h3>
-                <p className="admin-card-desc">{item.description}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
+        <main className="dashboard-main-info">
+          <h2 className="section-heading">🧠 Key Insights</h2>
+          <div className="tip-cards">
+            <div className="tip-card">
+              <strong>🔍 User Oversight:</strong> Monitor and manage platform users.
+            </div>
+            <div className="tip-card">
+              <strong>📝 Document Verification:</strong> Ensure compliance through user documents.
+            </div>
+            <div className="tip-card">
+              <strong>💰 Finance Tracking:</strong> Keep tabs on transactions and loan activities.
+            </div>
+            <div className="tip-card">
+              <strong>🌐 Farm Management:</strong> Review farm data and progress.
+            </div>
+            <div className="tip-card">
+              <strong>🛠️ Issue Resolution:</strong> Address and resolve platform-reported issues.
+            </div>
+            <div className="tip-card">
+              <strong>📈 Growth Metrics:</strong> Use data to guide strategic decisions.
+            </div>
+          </div>
+
+          <div className="dashboard-welcome-note">
+            <h3>You’re in command, Admin! 👨‍💼</h3>
+            <p>
+              From user management to verifying investments and resolving issues — you're the driving force 
+              behind platform efficiency. Use the sidebar to take action where needed.
+            </p>
+          </div>
+
+          <section className="dashboard-bottom-message">
+            <h3>Need to Resolve a System Concern? 🔧</h3>
+            <p>
+              Visit the <Link to="/admin/issues">Issue Resolution</Link> section to manage and close 
+              reported platform concerns effectively.
+            </p>
+          </section>
+        </main>
+      </section>
+
       <Footer />
     </div>
   );

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 import Footer from "../Common/Footer";
-import "../../styles/investor/InvestorDashboard.css"; // Make sure this path matches your project
+import "../../styles/investor/InvestorDashboard.css";
 
 const InvestorDashboard = () => {
+  const { user } = useContext(AuthContext);
+
   const insights = [
     {
       title: "📈 Smart Investing",
@@ -20,80 +23,81 @@ const InvestorDashboard = () => {
   ];
 
   const dashboardItems = [
-    {
-      path: "/investor/view-farms",
-      icon: "🌿",
-      title: "View Farms",
-      description: "Explore available farms for investment.",
-    },
-    {
-      path: "/investor/invest-farm",
-      icon: "💰",
-      title: "Invest in a Farm",
-      description: "Make an investment in a promising farm.",
-    },
-    {
-      path: "/investor/my-investments",
-      icon: "📊",
-      title: "My Investments",
-      description: "Track and manage your investments.",
-    },
-    {
-      path: "/investor/transactions",
-      icon: "💸",
-      title: "My Transactions",
-      description: "View your financial transactions.",
-    },
-    {
-      path: "/investor/transactions/analytics",
-      icon: "📈",
-      title: "Transaction Analytics",
-      description: "Analyze your transaction trends.",
-    },
-    {
-      path: "/common/report-issue",
-      icon: "🚨",
-      title: "Report Issue",
-      description: "Report any issues or problems to the admin.",
-    },
+    { path: "/investor/view-farms", icon: "🌿", title: "View Farms" },
+    { path: "/investor/invest-farm", icon: "💰", title: "Invest in a Farm" },
+    { path: "/investor/my-investments", icon: "📊", title: "My Investments" },
+    { path: "/investor/transactions", icon: "💸", title: "My Transactions" },
+    { path: "/investor/transactions/analytics", icon: "📈", title: "Transaction Analytics" },
+    { path: "/common/report-issue", icon: "🚨", title: "Report Issue" },
   ];
 
   return (
-    <div className="page-container">
-      <div className="banner">
-        <h2>📊 Invest Smart, Grow Your Wealth! 💰</h2>
-        <p>Explore farm investment opportunities and maximize your financial growth.</p>
-      </div>
+    <div className="investor-dashboard-wrapper">
+      <header className="investor-dashboard-header">
+        <h1>🪙 Investor Control Panel</h1>
+        <p>Grow your wealth while supporting the farming ecosystem.</p>
+      </header>
 
-      <div className="container">
-        <h1 className="dashboard-title">Welcome, Investor! 🎯</h1>
-        <p className="dashboard-subtitle">
-          Unlock new opportunities in sustainable farming investments.
-        </p>
+      <section className="dashboard-welcome-banner">
+        <div className="avatar-box">
+          <img
+            src={
+              user?.profilePic
+                ? `http://localhost:5000/${user.profilePic.replace(/\\/g, "/")}`
+                : "/default-profile.png"
+            }
+            alt="Investor Avatar"
+            className="profile-avatar"
+          />
+        </div>
+        <div className="banner-text">
+          <h2>Welcome Back, {user?.firstName || "Investor"}! 🎯</h2>
+          <p>
+            "Don't put all your eggs in one basket — diversify your farm investments and help agriculture thrive."
+          </p>
+        </div>
+      </section>
 
-        <div className="insights-section">
-          <h3>💡 Investment Insights</h3>
+      <section className="investor-dashboard-content">
+        <aside className="dashboard-sidebar">
+          <h3>Quick Navigation</h3>
           <ul>
-            {insights.map((insight, index) => (
+            {dashboardItems.map((item, index) => (
               <li key={index}>
-                <strong>{insight.title}</strong> - {insight.description}
+                <Link to={item.path}>
+                  <span>{item.icon}</span> {item.title}
+                </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </aside>
 
-        <div className="dashboard-grid">
-          {dashboardItems.map((item, index) => (
-            <Link to={item.path} key={index} className="dashboard-card">
-              <div className="card-content">
-                <span className="icon">{item.icon}</span>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+        <main className="dashboard-main-info">
+          <h2 className="section-heading">💡 Investment Insights</h2>
+          <div className="tip-cards">
+            {insights.map((tip, index) => (
+              <div className="tip-card" key={index}>
+                <strong>{tip.title}</strong> {tip.description}
               </div>
-            </Link>
-          ))}
-        </div>
-      </div>
+            ))}
+          </div>
+
+          <div className="dashboard-welcome-note">
+            <h3>Ready to make an impact? 📈</h3>
+            <p>
+              Explore farms, make investments, and track your portfolio. Use the sidebar for quick access to all tools.
+            </p>
+          </div>
+
+          <section className="dashboard-bottom-message">
+            <h3>Need Help or Support? 🤝</h3>
+            <p>
+              If you're facing any issues or have questions, visit the{" "}
+              <Link to="/common/report-issue">Report Issue</Link> page or reach out to support.
+            </p>
+          </section>
+        </main>
+      </section>
 
       <Footer />
     </div>

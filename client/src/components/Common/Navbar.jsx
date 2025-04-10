@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="brand">
-        <h2>🌱 FARM-IT</h2>
+        <h2>🌿 FARM-IT</h2>
       </div>
       <div className="nav-links">
         {showLandingLinks && (

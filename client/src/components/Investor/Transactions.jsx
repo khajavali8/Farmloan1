@@ -123,9 +123,9 @@ function Transactions() {
                         <p><strong>Name:</strong> {selectedTransaction.from ? `${selectedTransaction.from.firstName} ${selectedTransaction.from.lastName}` : "N/A"}</p>
                         <p><strong>Email:</strong> {selectedTransaction.from?.email || "N/A"}</p>
 
-                        {/* <h3 style={{ color: "#007bff", marginTop: "20px", marginBottom: "15px", fontSize: "18px", fontWeight: "600" }}>Receiver Details</h3>
+                        <h3 style={{ color: "#007bff", marginTop: "20px", marginBottom: "15px", fontSize: "18px", fontWeight: "600" }}>Receiver Details</h3>
                         <p><strong>Name:</strong> {selectedTransaction.to ? `${selectedTransaction.to.firstName} ${selectedTransaction.to.lastName}` : "N/A"}</p>
-                        <p><strong>Email:</strong> {selectedTransaction.to?.email || "N/A"}</p> */}
+                        <p><strong>Email:</strong> {selectedTransaction.to?.email || "N/A"}</p>
 
                         <button onClick={closeModal} style={{
                             marginTop: "15px", padding: "8px 12px", background: "#dc3545",

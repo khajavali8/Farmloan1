@@ -3,6 +3,7 @@ import Farm from "../models/Farm.js";
 import Loan from "../models/Loan.js";
 import Document from "../models/Document.js";
 import { sendEmail } from "../utils/emailService.js"; 
+import bcrypt from "bcrypt";  
 
 const userController = {
     async getProfile(req, res) {
@@ -27,19 +28,27 @@ const userController = {
     async changePassword(req, res) {
       try {
         const { currentPassword, newPassword } = req.body;
+    
         const user = await User.findById(req.user.id);
-        if (!(await bcrypt.compare(currentPassword, user.password))) {
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+    
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
           return res.status(400).json({ message: "Incorrect current password" });
         }
+    
         user.password = await bcrypt.hash(newPassword, 10);
         await user.save();
-        res.json({ message: "Password updated successfully" });
+    
+        return res.json({ message: "Password updated successfully" });
       } catch (error) {
-        res.status(500).json({ message: "Server error" });
+        console.error("Password change error:", error); // <-- Log error
+        return res.status(500).json({ message: "Server error" });
       }
     },
-  
-
+    
   async getAllUsers(req, res) {
     try {
       const users = await User.find().select('-password');
