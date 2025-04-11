@@ -2,6 +2,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import "../../styles/Navbar.css";
+import organicIcon from "../../assets/organic.gif"; 
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -17,27 +18,28 @@ const Navbar = () => {
   const showSignup = !user && !["/login", "/register"].includes(pathname);
 
   return (
-    <nav className="navbar">
-      <div className="brand">
-        <h2>🌿 FARM-IT</h2>
-      </div>
-      <div className="nav-links">
+    <nav className="nav-glass">
+<div className="nav-brand">
+  <img src={organicIcon} alt="Farm IT Logo" className="brand-icon" />
+  <span className="brand-text">Farm IT</span>
+</div>
+
+      <div className="nav-items">
         {showLandingLinks && (
           <>
-            <a href="#hero" className="nav-link">Home</a>
-            <a href="#features" className="nav-link">Features</a>
-            <a href="#about" className="nav-link">About</a>
-            <a href="#contact" className="nav-link">Contact</a>
+            <a href="#hero">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
           </>
         )}
-
         {user ? (
           <>
-            <Link to="/dashboard" className="nav-link">Dashboard</Link>
-            <button onClick={handleLogout} className="logout-button">Logout</button>
+            <Link to="/dashboard">Dashboard</Link>
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
           </>
         ) : (
-          showSignup && <Link to="/login" className="nav-link">Signup</Link>
+          showSignup && <Link to="/login">Sign Up</Link>
         )}
       </div>
     </nav>

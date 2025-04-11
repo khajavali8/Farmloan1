@@ -60,7 +60,7 @@ const styles = {
   },
   heading: {
     fontSize: "2.5rem",
-    color: "#2c3e50",
+    color: "#27ae60",
     marginBottom: "20px",
     fontWeight: "600",
   },

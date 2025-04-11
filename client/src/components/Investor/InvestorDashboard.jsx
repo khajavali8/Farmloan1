@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import Footer from "../Common/Footer";
-import "../../styles/investor/InvestorDashboard.css";
+import "../../styles/farmer/FarmerDashboard.css";
 
 const InvestorDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -32,8 +32,8 @@ const InvestorDashboard = () => {
   ];
 
   return (
-    <div className="investor-dashboard-wrapper">
-      <header className="investor-dashboard-header">
+    <div className="farmer-dashboard-wrapper">
+      <header className="farmer-dashboard-header">
         <h1>🪙 Investor Control Panel</h1>
         <p>Grow your wealth while supporting the farming ecosystem.</p>
       </header>
@@ -58,7 +58,7 @@ const InvestorDashboard = () => {
         </div>
       </section>
 
-      <section className="investor-dashboard-content">
+      <section className="farmer-dashboard-content">
         <aside className="dashboard-sidebar">
           <h3>Quick Navigation</h3>
           <ul>

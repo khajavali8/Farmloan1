@@ -165,3 +165,14 @@ input:focus, select:focus {
         width: 100%;
     }
 }
+input::placeholder,
+select {
+    color: #444;
+}
+
+input::placeholder:after,
+select:after {
+    content: '*';
+    color: red;
+    margin-left: 2px;
+}

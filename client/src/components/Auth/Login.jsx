@@ -76,7 +76,6 @@ const AuthPage = () => {
             return setError("❌ Invalid email format.");
         }
 
-        // Password format validation only for registration
         if (isRegistering && !validatePassword(formData.password)) {
             return setError("❌ Password must be at least 8 characters with uppercase, lowercase, number & symbol.");
         }

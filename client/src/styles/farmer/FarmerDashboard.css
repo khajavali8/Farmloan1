@@ -54,20 +54,26 @@
 
 .dashboard-sidebar li {
   margin-bottom: 1rem;
+  transition: transform 0.2s ease;
 }
-
+.dashboard-sidebar li:hover {
+  transform: translateX(5px);
+}
 .dashboard-sidebar a {
   text-decoration: none;
   color: #2e2e2e;
   font-size: 1.05rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: color 0.2s ease;
+  border-radius: 6px;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .dashboard-sidebar a:hover {
+  background-color: #e0f2f1; 
   color: #1b5e20;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .dashboard-main-info {
@@ -257,4 +263,13 @@ footer {
   text-align: center;
   padding: 1.5rem 2rem;
   margin-top: auto;
+}
+.admin-role-status {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  display: inline-block;
 }

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import Footer from "../Common/Footer";
-import "../../styles/admin/AdminDashboard.css";
+// import "../../styles/admin/AdminDashboard.css";
 
 const AdminDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -18,8 +18,8 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <div className="admin-dashboard-wrapper">
-      <header className="admin-dashboard-header">
+    <div className="farmer-dashboard-wrapper">
+      <header className="farmer-dashboard-header">
         <h1>🛡️ Admin Control Panel</h1>
         <p>Effortlessly manage the entire platform from a single place.</p>
       </header>
@@ -43,7 +43,7 @@ const AdminDashboard = () => {
         </div>
       </section>
 
-      <section className="admin-dashboard-content">
+      <section className="farmer-dashboard-content">
         <aside className="dashboard-sidebar">
           <h3>Admin Tools</h3>
           <ul>
