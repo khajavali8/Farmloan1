@@ -15,7 +15,7 @@ const Footer = () => {
             <a href="#"><FaTwitter /></a>
             <a href="#"><FaFacebook /></a>
             <a href="#"><FaInstagram /></a>
-            <a href="#"><FaLinkedin /></a>
+            <a href="https://www.linkedin.com/in/healthofin-innovations-787148335/"><FaLinkedin /></a>
           </div>
           <a href="#" className="scroll-top"><FaArrowUp /></a>
         </div>
