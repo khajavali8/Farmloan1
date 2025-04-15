@@ -36,8 +36,8 @@ const ReportIssue = () => {
   };
 
   return (
-    <div className="report-container">
-      <h2>Report an Issue</h2>
+    <div className="report-container" style={{marginTop:"50px"}}>
+      <h2 >Report an Issue</h2>
       {message && <p className="report-message">{message}</p>}
       <form onSubmit={handleSubmit} className="report-form">
         <label>Issue Title:</label>

@@ -51,7 +51,7 @@ const DocumentUpload = () => {
 
   return (
     <div className="upload-container">
-      <div className="upload-card">
+      <div className="upload-card" style={{marginTop:"30px"}}>
         <h2 className="upload-title">Upload Document</h2>
         <form onSubmit={handleSubmit} className="upload-form">
           <input

@@ -61,7 +61,7 @@ const FarmForm = () => {
 
   return (
     <div className="upload-container">
-      <div className="upload-card">
+      <div className="upload-card" style={{marginTop:"30px"}}>
         <h2 className="upload-title">Register Your Farm</h2>
         {!user?.isVerified && (
           <p className="warning-message">Your documents are not verified. You cannot register a farm.</p>

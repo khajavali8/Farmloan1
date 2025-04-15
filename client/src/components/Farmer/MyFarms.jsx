@@ -114,7 +114,7 @@ const MyFarms = () => {
 
   return (
     <div className="my-farms-container">
-      <h2>My Farms</h2>
+      <h2 style={{marginTop:"30px"}}>My Farms</h2>
       {farms.length === 0 ? (
         <p>No farms found.</p>
       ) : (

@@ -33,7 +33,7 @@ const TransactionsFarmer = () => {
   if (loading) return <h2 className="loading-text">Loading transactions...</h2>;
 
   return (
-    <div className="transactions-container">
+    <div className="transactions-container" style={{marginTop:"30px"}}>
       <h2 className="transactions-heading">My Transactions</h2>
       <table className="transactions-table">
         <thead>

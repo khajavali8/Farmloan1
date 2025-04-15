@@ -103,7 +103,7 @@ const MyLoans = () => {
 
   return (
     <div className="form-container">
-      <h2>My Loans</h2>
+      <h2 style={{marginTop:"40px"}}>My Loans</h2>
 
       {loans.length > 0 ? (
         <ul>
